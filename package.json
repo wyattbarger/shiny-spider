@@ -1,0 +1,32 @@
+{
+  "name": "sp500-stock-spider",
+  "version": "1.0.0",
+  "description": "A web scraper for the S&P 500 stock index, designed with internal rate limiting and data caching to optimize performance and usability.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wyattbarger/shiny-spider.git"
+  },
+  "keywords": [
+    "web",
+    "scraper",
+    "axios",
+    "cheerio",
+    "stock-data",
+    "stock-prices",
+    "user-friendly",
+    "easy-to-use",
+    "stock-market",
+    "rate-limiting",
+    "data-caching"
+  ],
+  "author": "Wyatt Barger",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/wyattbarger/shiny-spider/issues"
+  },
+  "homepage": "https://github.com/wyattbarger/shiny-spider#readme"
+}
