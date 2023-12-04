@@ -63,7 +63,12 @@ This project is currently not open to pull requests to the shiny-spider resposit
 
 ### CONTACT
 
+Developers GitHub profile:
 [wyattbarger](https://github.com/wyattbarger)
+
+Reach the developer on LinkedIn: [wyatt-barger](https://www.linkedin.com/in/wyatt-barger/)
+
+Create a GitHub issue related to this project: [Issues](https://github.com/wyattbarger/shiny-spider/issues)
 
 
 
