@@ -2,4 +2,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
+// Add the shinySpider() function which will be the main function to operate once the npm package is released for user function.
+async function shinySpider() {
 
+};
