@@ -2,11 +2,11 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-// Add a variable currentTimeCheck, which is set Date.now, to compare to the rateLimit comparison.
-let lastScrape = Date.now();
-
 // Add a rateLimit variable which relgates the full 500 ticker scrape to happen only every six hours.
 const rateLimit = 6 * 60 * 60 * 1000;
+
+// Add a variable currentTimeCheck, which is set Date.now, to compare to the rateLimit comparison.
+let lastScrape = Date.now() - rateLimit;
 
 // Add a function to check to see if the rate limiting standard has been meet before allowing another scrape to be ran.
 function rateLimitCheck() {
