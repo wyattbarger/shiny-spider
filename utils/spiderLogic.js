@@ -2,9 +2,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-// Add a variable to cache the data from the scrape, that can be accessed until the next scrape which set to run every six hours is triggered.
-const dataCache = [];
-
 // Add a variable currentTimeCheck, which is set Date.now, to compare to the rateLimit comparison.
 let lastScrape = Date.now();
 
@@ -48,4 +45,4 @@ async function scrapeData(ticker) {
 }
 
 // Add export for all necessary scraper components.
-module.exports = { dataCache, lastScrape, rateLimit, rateLimitCheck, scrapeData };
+module.exports = { lastScrape, rateLimit, rateLimitCheck, scrapeData };
