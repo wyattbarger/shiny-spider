@@ -23,24 +23,58 @@ function rateLimitCheck() {
 }
 
 // Add a function to scrape the data needed from NYSE using Axios and Cheerio, and return it in the format of an object.
-async function scrapeData(ticker) {
+// async function scrapeData(ticker) {
+//   try {
+//     // Add the Url we will be making our Axios requests to.
+//     const reqUrl = `https://www.nyse.com/quote/${ticker}`;
+//     // Add a response variable to store the page we will return from our Axios request.
+//     const response = await axios.get(reqUrl);
+//     // Add a const $ to load the data returned by Axios in the response variable as a Cheerio object (https://cheerio.js.org/docs/intro).
+//     const $ = cheerio.load(response.data);
+//     // Add a line that will scrape the stock name from the element with the class by targeting the text of the element assigned that class, accessed through the Cheerio object '$'.
+//     const stockName = $("h2").text();
+//     const price = $(".d-dquote-x3").text();
+//     return {
+//       ticker: ticker,
+//       stockName: stockName,
+//       price: price,
+//     };
+//   } catch (error) {
+//     console.error(`Failed to scrape data for ticker ${ticker}: ${error}`);
+//   }
+// }
+
+async function scrapeData( ticker, page ) {
   try {
-    // Add the Url we will be making our Axios requests to.
-    const reqUrl = `https://www.nyse.com/quote/${ticker}`;
-    // Add a response variable to store the page we will return from our Axios request.
-    const response = await axios.get(reqUrl);
-    // Add a const $ to load the data returned by Axios in the response variable as a Cheerio object (https://cheerio.js.org/docs/intro).
-    const $ = cheerio.load(response.data);
-    // Add a line that will scrape the stock name from the element with the class by targeting the text of the element assigned that class, accessed through the Cheerio object '$'.
-    const stockName = $("h2").text();
-    const price = $(".d-dquote-x3").text();
-    return {
-      ticker: ticker,
-      stockName: stockName,
-      price: price,
-    };
+      const reqUrl = `https://www.nyse.com/quote/${ticker}`;
+      await page.goto(reqUrl);
+
+      // Wait for the selectors to load
+      const stockNameSelector = 'h2';
+      const priceSelector = '.d-dquote-x3';
+      await page.waitForSelector(stockNameSelector);
+      await page.waitForSelector(priceSelector);
+
+      // Scrape the data
+      const stockName = await page.evaluate((selector) => {
+          const element = document.querySelector(selector);
+          return element ? element.innerText : null;
+      }, stockNameSelector);
+      console.log(`Scraped stock name for ticker ${ticker}:`, stockName);
+
+      const price = await page.evaluate((selector) => {
+          const element = document.querySelector(selector);
+          return element ? element.innerText : null;
+      }, priceSelector);
+      console.log(`Scraped price for ticker ${ticker}:`, price);
+
+      return {
+          ticker: ticker,
+          stockName: stockName,
+          price: price,
+      };
   } catch (error) {
-    console.error(`Failed to scrape data for ticker ${ticker}: ${error}`);
+      console.error(`Failed to scrape data for ticker ${ticker}: ${error}`);
   }
 }
 

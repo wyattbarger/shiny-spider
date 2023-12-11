@@ -2,15 +2,19 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const { tickerArray, spiderLogic } = require('./utils')
+const puppeteer = require("puppeteer");
+
 
 // Add the shinySpider() function which will be the main function to operate once the npm package is released for user function.
 async function shinySpider() {
     console.log(tickerArray)
+    const browser = await puppeteer.launch({ headless: "new" });
+    const page = await browser.newPage();
     let scrapeResults = [];
     for (const ticker of tickerArray) {
         try {
             if (spiderLogic.rateLimitCheck()) {
-                const scrape = await spiderLogic.scrapeData(ticker);
+                const scrape = await spiderLogic.scrapeData(ticker, page);
                 scrapeResults.push(scrape);
                 spiderLogic.lastScrape = Date.now();
             } else {
@@ -20,6 +24,7 @@ async function shinySpider() {
             console.error(`Failed to run shinySpider function with error code: ${error}.`)
         }
     }
+    await browser.close();
     return scrapeResults;
 };
 
