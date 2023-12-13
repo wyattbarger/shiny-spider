@@ -12,8 +12,8 @@ async function shinySpider() {
     const log = console.log;
     const scrapeProgress = new ProgressBar(':bar :percent :etas', { 
         total: tickerArray.length,
-        incomplete: '-',
-        complete: '*' 
+        incomplete: chalk.red('-'),
+        complete: chalk.green('*') 
     });
     log(chalk.bold.cyan('Starting scrape, this process could take up to a half hour. Progress will be logged to the server console.'))
     for (const ticker of tickerArray) {
