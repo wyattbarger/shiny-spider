@@ -58,7 +58,7 @@ async function scrapeData( ticker, page ) {
   } catch (error) {
       console.error(`Failed to scrape data for ticker ${ticker}: ${error}`);
   }
-}
+};
 
 // Add export for all necessary scraper components.
 module.exports = { lastScrape, rateLimit, rateLimitCheck, scrapeData };
