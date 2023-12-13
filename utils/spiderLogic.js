@@ -48,13 +48,13 @@ async function scrapeData( ticker, page ) {
             return null;
         }
     }, stockNameSelector);
-      log(chalk.green.italic(`✔︎ Scraped stock name for ticker ${ticker}:`, stockName));
+    log(chalk.green.italic(`✔︎ Scraped stock name for ticker ${chalk.underline(ticker)}:`, stockName));
 
       const price = await page.evaluate((selector) => {
           const element = document.querySelector(selector);
           return element ? element.innerText : null;
       }, priceSelector);
-      log(chalk.green.italic(`✔︎ Scraped price for ticker ${ticker}: $${price}`));
+      log(chalk.green.italic(`✔︎ Scraped price for ticker ${chalk.underline(ticker)}: $${price}`));
 
       return {
           ticker: ticker,
