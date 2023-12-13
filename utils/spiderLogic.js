@@ -62,7 +62,7 @@ async function scrapeData( ticker, page ) {
           price: price,
       };
   } catch (error) {
-      console.error(`❕ Failed to scrape data for ticker ${ticker}: ${error} ❕`);
+    console.error(chalk.red.bold(`❕ Failed to scrape data for ticker ${chalk.underline(ticker)}: ${error} ❕`));
   }
 };
 
