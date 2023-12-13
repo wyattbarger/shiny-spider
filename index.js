@@ -4,6 +4,7 @@
 const puppeteer = require("puppeteer");
 const ProgressBar = require('progress');
 const chalk = require('chalk');
+const util = require('util');
 const { tickerArray, spiderLogic } = require('./utils')
 
 // shinySpider() uses all logic from the package to compile the finished scraper this is the function users call to start the scraping process.
@@ -41,7 +42,7 @@ async function shinySpider() {
     }
     // Close the browser instance and return the results
     await browser.close();
-    console.log(chalk.magenta.bold.JSON.stringify(scrapeResults));
+    console.log(chalk.magenta.bold(JSON.stringify(util.inspect(scrapeResults, { maxArrayLength: null }))));
     return scrapeResults;
 };
 // ** REMOVE THIS ONCE ALL TESTING IS DONE AND COMPLETE, BEFORE YOU PUBLISH THIS PACKAGE ** 
