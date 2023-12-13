@@ -1,5 +1,6 @@
 // Add require statements for each of the necessary technologies and utilities to build the scraper.
 const puppeteer = require("puppeteer");
+const ProgressBar = require('progress');
 const { tickerArray, spiderLogic } = require('./utils')
 
 // Add the shinySpider() function which will be the main function to operate once the npm package is released for user function.
@@ -8,9 +9,11 @@ async function shinySpider() {
     const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
     let scrapeResults = [];
+    const scrapeProgress = new ProgressBar(':bar :percent :etas', { total: tickerArray.length });
     for (const ticker of tickerArray) {
         try {
             if (spiderLogic.rateLimitCheck()) {
+                scrapeProgress.tick()
                 const scrape = await spiderLogic.scrapeData(ticker, page);
                 scrapeResults.push(scrape);
                 spiderLogic.lastScrape = Date.now();

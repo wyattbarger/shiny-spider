@@ -32,9 +32,16 @@ async function scrapeData( ticker, page ) {
 
       // Scrape the data
       const stockName = await page.evaluate((selector) => {
-          const element = document.querySelector(selector);
-          return element ? element.innerText : null;
-      }, stockNameSelector);
+        const element = document.querySelector(selector);
+        if (element) {
+            let text = element.innerText;
+            // Remove the uppercase ticker from the end of the text
+            text = text.replace(/ [A-Z]+$/, '').trim();
+            return text;
+        } else {
+            return null;
+        }
+    }, stockNameSelector);
       console.log(`Scraped stock name for ticker ${ticker}:`, stockName);
 
       const price = await page.evaluate((selector) => {
