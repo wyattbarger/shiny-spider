@@ -1,3 +1,9 @@
+// Add the chalk technology to be used for stlying the console logs contained within spiderLogic functions.
+const chalk = require('chalk');
+
+// Add the log variable assigned to the value console.log to be used with our chalk version 4 technology.
+const log = console.log;
+
 // Add a rateLimit variable which relgates the full 500 ticker scrape to happen only every six hours.
 const rateLimit = 6 * 60 * 60 * 1000;
 
@@ -42,13 +48,13 @@ async function scrapeData( ticker, page ) {
             return null;
         }
     }, stockNameSelector);
-      console.log(`Scraped stock name for ticker ${ticker}:`, stockName);
+      log(chalk.green.italic(`✔︎ Scraped stock name for ticker ${ticker}:`, stockName));
 
       const price = await page.evaluate((selector) => {
           const element = document.querySelector(selector);
           return element ? element.innerText : null;
       }, priceSelector);
-      console.log(`Scraped price for ticker ${ticker}:`, price);
+      log(chalk.green.italic(`✔︎ Scraped price for ticker ${ticker}: $${price}`));
 
       return {
           ticker: ticker,
@@ -56,7 +62,7 @@ async function scrapeData( ticker, page ) {
           price: price,
       };
   } catch (error) {
-      console.error(`Failed to scrape data for ticker ${ticker}: ${error}`);
+      console.error(`❕ Failed to scrape data for ticker ${ticker}: ${error} ❕`);
   }
 };
 
