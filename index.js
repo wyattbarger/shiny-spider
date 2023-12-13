@@ -31,7 +31,7 @@ async function shinySpider() {
                 const scrape = await spiderLogic.scrapeData(ticker, page);
                 scrapeResults.push(scrape);
                 spiderLogic.lastScrape = Date.now();
-                log(chalk.bold.cyan(`Data successfully scraped for ${ticker} 🗃️`));
+                log(chalk.bold.cyan(`Scrape finished for ${ticker} 🗃️`));
             } else {
                 // Return this log if the rate limit is hit. See docs for more information.
                 return chalk.bold.red(`🛑 Six hour rate limit hit. Please review the packages documentation regarding rate limiting and customization for help.`)
@@ -45,9 +45,11 @@ async function shinySpider() {
     console.log(chalk.magenta.bold(JSON.stringify(util.inspect(scrapeResults, { maxArrayLength: null }))));
     return scrapeResults;
 };
-// ** REMOVE THIS ONCE ALL TESTING IS DONE AND COMPLETE, BEFORE YOU PUBLISH THIS PACKAGE ** 
-(async () => {
-    console.log(await shinySpider());
-  })();
-
+// Call shinySpider for the first time
+shinySpider().then(() => {
+    // Wait for a short delay, then call shinySpider again
+    setTimeout(() => {
+      shinySpider();
+    }, 5000); // Adjust this delay as needed, but it should be less than the rate limit
+  });
 module.exports = shinySpider

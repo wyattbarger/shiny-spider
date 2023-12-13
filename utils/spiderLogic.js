@@ -51,9 +51,9 @@ async function scrapeData(ticker, page) {
     }, stockNameSelector);
     log(
       chalk.green.italic(
-        `✔︎ Scraped stock name for ticker ${chalk.underline(
+        `✔︎ Scraped ${chalk.bold('stockName')} for ${chalk.bold('ticker')} ${chalk.underline(
           ticker
-        )}:, ${stockName}`
+        )}: ${chalk.bold(stockName)}`
       )
     );
 
@@ -64,7 +64,7 @@ async function scrapeData(ticker, page) {
     }, priceSelector);
     log(
       chalk.green.italic(
-        `✔︎ Scraped price for ticker ${chalk.underline(ticker)}: $${price}`
+        `✔︎ Scraped ${chalk.bold('price')} for ${chalk.bold('ticker')} ${chalk.underline(ticker)}: $${chalk.bold(price)}`
       )
     );
 
