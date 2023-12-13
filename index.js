@@ -5,7 +5,6 @@ const { tickerArray, spiderLogic } = require('./utils')
 
 // Add the shinySpider() function which will be the main function to operate once the npm package is released for user function.
 async function shinySpider() {
-    console.log(tickerArray)
     const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
     let scrapeResults = [];
