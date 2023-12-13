@@ -1,4 +1,8 @@
-// Add an array that defines the ticker symbols that we will be using to make html requests with Axios to the NYSE website.
+// To customize the stocks that shinySpider will scrape data for, add or remove tickers in the same format as you see in tickerArray below.
+// ** Please note that any stocks added to this array will have the same information scraped as dictated by the default behavior of the package, unless changes are made in scrapeData(ticker) from utils/spiderLogic.js
+// To test if a stock you wish to add outside of the original array can be scraped successfully, replace 'ticker-here' with the ticker in this URL: https://www.nyse.com/quote/'ticker-here'.
+// For example, to see if we can scrape data for Barrick Gold Corporation, in addition to the original array of 500 tickers, we would test this URL: https://www.nyse.com/quote/GOLD.
+// If a webpage is displayed in the same format as the webpages for the other tickers in the array, with a name and price in the elements with the class selectors defined in scrapeData(ticker) (which can be checked using Chrome's DevTools), this ticker is compatible with shinySpider().
 const tickerArray = [
     'MMM',
     'AOS',
