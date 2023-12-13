@@ -48,7 +48,7 @@ async function scrapeData( ticker, page ) {
             return null;
         }
     }, stockNameSelector);
-    log(chalk.green.italic(`✔︎ Scraped stock name for ticker ${chalk.underline(ticker)}:`, stockName));
+    log(chalk.green.italic(`✔︎ Scraped stock name for ticker ${chalk.underline(ticker)}:, ${stockName}`));
 
       const price = await page.evaluate((selector) => {
           const element = document.querySelector(selector);

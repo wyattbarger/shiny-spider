@@ -19,6 +19,7 @@ async function shinySpider() {
                 const scrape = await spiderLogic.scrapeData(ticker, page);
                 scrapeResults.push(scrape);
                 spiderLogic.lastScrape = Date.now();
+                log(chalk.bold.cyan(`Data successfully scraped for ${ticker} 🗃️`));
             } else {
                 return `🛑 Six hour rate limit hit. Please review the packages documentation regarding rate limiting and customization for help.`
             }
