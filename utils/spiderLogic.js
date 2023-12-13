@@ -1,70 +1,89 @@
-// Add the chalk technology to be used for stlying the console logs contained within spiderLogic functions.
-const chalk = require('chalk');
+// Add the the chalk module for styling console logs.
+const chalk = require("chalk");
 
-// Add the log variable assigned to the value console.log to be used with our chalk version 4 technology.
+// Create a log variable as a shorthand for console.log.
 const log = console.log;
 
-// Add a rateLimit variable which relgates the full 500 ticker scrape to happen only every six hours.
+// Set a rate limit to prevent scraping more than once every six hours (rate limit is enforced only when the server is ran continuously), change this value to customize the limited rate of time between scrapes. This limit was set well within the bounds of ethical scraping as far as time between request goes, please keep this in mind when customizing this value.
 const rateLimit = 6 * 60 * 60 * 1000;
 
-// Add a variable currentTimeCheck, which is set Date.now, to compare to the rateLimit comparison.
+// Initialize a variable to store the time of the last scrape. Subtracting the value of rateLimit from lastScrape allows initial function, while enforcing the rate limit for subsequent scrapes that happen without a server restart.
 let lastScrape = Date.now() - rateLimit;
 
-// Add a function to check to see if the rate limiting standard has been meet before allowing another scrape to be ran.
+// Add a function to check if enough time has passed since the last scrape.
 function rateLimitCheck() {
-  // Get the current time
+  // Get the current time.
   const currentTime = Date.now();
   // Check if the current time is greater than the time of the last scrape plus the rate limit.
   if (currentTime >= lastScrape + rateLimit) {
-    // If enough time has passed, update lastScrape and return true.
     return true;
   } else {
-    // If not enough time has passed, return false.
     return false;
   }
 }
 
-// Add a scrapeData function that uses puppeteer to scrape the data we need after it is dynamically loaded to the page with JavaScript.npm 
-async function scrapeData( ticker, page ) {
+// Add a scrapeData function that uses puppeteer to scrape the data we need after it is dynamically loaded to the page with JavaScript.
+async function scrapeData(ticker, page) {
   try {
-      const reqUrl = `https://www.nyse.com/quote/${ticker}`;
-      await page.goto(reqUrl);
+    // Navigate to the webpage for the given ticker.
+    const reqUrl = `https://www.nyse.com/quote/${ticker}`;
+    await page.goto(reqUrl);
 
-      // Wait for the selectors to load
-      const stockNameSelector = 'h2';
-      const priceSelector = '.d-dquote-x3';
-      await page.waitForSelector(stockNameSelector);
-      await page.waitForSelector(priceSelector);
+    // Define selectors for the data to be scraped.
+    const stockNameSelector = "h2";
+    const priceSelector = ".d-dquote-x3";
 
-      // Scrape the data
-      const stockName = await page.evaluate((selector) => {
-        const element = document.querySelector(selector);
-        if (element) {
-            let text = element.innerText;
-            // Remove the uppercase ticker from the end of the text
-            text = text.replace(/ [A-Z]+$/, '').trim();
-            return text;
-        } else {
-            return null;
-        }
+    // Wait for the selectors to load.
+    await page.waitForSelector(stockNameSelector);
+    await page.waitForSelector(priceSelector);
+
+    // Scrape the stock name.
+    const stockName = await page.evaluate((selector) => {
+      const element = document.querySelector(selector);
+      if (element) {
+        let text = element.innerText;
+        // Remove the uppercase ticker from the end of the stock name, which is inlcuded in the innerText of this element on the page.
+        text = text.replace(/ [A-Z]+$/, "").trim();
+        return text;
+      } else {
+        return null;
+      }
     }, stockNameSelector);
-    log(chalk.green.italic(`✔︎ Scraped stock name for ticker ${chalk.underline(ticker)}:, ${stockName}`));
+    log(
+      chalk.green.italic(
+        `✔︎ Scraped stock name for ticker ${chalk.underline(
+          ticker
+        )}:, ${stockName}`
+      )
+    );
 
-      const price = await page.evaluate((selector) => {
-          const element = document.querySelector(selector);
-          return element ? element.innerText : null;
-      }, priceSelector);
-      log(chalk.green.italic(`✔︎ Scraped price for ticker ${chalk.underline(ticker)}: $${price}`));
+    // Scrape the stock price.
+    const price = await page.evaluate((selector) => {
+      const element = document.querySelector(selector);
+      return element ? element.innerText : null;
+    }, priceSelector);
+    log(
+      chalk.green.italic(
+        `✔︎ Scraped price for ticker ${chalk.underline(ticker)}: $${price}`
+      )
+    );
 
-      return {
-          ticker: ticker,
-          stockName: stockName,
-          price: price,
-      };
+    // Return the scraped data.
+    return {
+      ticker: ticker,
+      stockName: stockName,
+      price: price,
+    };
   } catch (error) {
-    console.error(chalk.red.bold(`❕ Failed to scrape data for ticker ${chalk.underline(ticker)}: ${error} ❕`));
+    console.error(
+      chalk.red.bold(
+        `❕ Failed to scrape data for ticker ${chalk.underline(
+          ticker
+        )}: ${error} ❕`
+      )
+    );
   }
-};
+}
 
 // Add export for all necessary scraper components.
 module.exports = { lastScrape, rateLimit, rateLimitCheck, scrapeData };
