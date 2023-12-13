@@ -41,9 +41,10 @@ async function shinySpider() {
     }
     // Close the browser instance and return the results
     await browser.close();
+    console.log(chalk.magenta.bold.JSON.stringify(scrapeResults));
     return scrapeResults;
 };
-
+// ** REMOVE THIS ONCE ALL TESTING IS DONE AND COMPLETE, BEFORE YOU PUBLISH THIS PACKAGE ** 
 (async () => {
     console.log(await shinySpider());
   })();
