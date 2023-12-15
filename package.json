@@ -1,7 +1,7 @@
 {
-  "name": "sp500-stock-spider",
+  "name": "shiny-spider",
   "version": "1.0.0",
-  "description": "A web scraper for the S&P 500 stock index, designed with internal rate limiting and data caching to optimize performance and usability.",
+  "description": "A web scraper designed for the S&P 500 stock index out of the box, to be easy to implement and use directly after install, as well as customize based on specific user needs.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

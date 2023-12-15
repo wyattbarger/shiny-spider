@@ -49,7 +49,7 @@ async function scrapeData(ticker, page) {
         return null;
       }
     }, stockNameSelector);
-    log(
+    log('\n' + 
       chalk.green.italic(
         `✔︎ Scraped ${chalk.bold('stockName')} for ${chalk.bold('ticker')} ${chalk.underline(
           ticker
@@ -75,7 +75,7 @@ async function scrapeData(ticker, page) {
       price: price,
     };
   } catch (error) {
-    console.error(
+    console.error('\n' + 
       chalk.red.bold(
         `❕ Failed to scrape data for ticker ${chalk.underline(
           ticker

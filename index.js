@@ -13,43 +13,45 @@ async function shinySpider() {
     // Launch a new headless browser instance using puppeteer.
     const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
+
     // Define the scrapeResults array to store scraped data in, and initialize a progress bar.
     let scrapeResults = [];
     const log = console.log;
+    const progressBarWidth = Math.min(process.stdout.columns - 30, 40);
     const scrapeProgress = new ProgressBar(':bar :percent :etas', { 
         total: tickerArray.length,
+        width: progressBarWidth,
         incomplete: chalk.red('-'),
-        complete: chalk.green('*') 
+        complete: chalk.green('*'),
     });
+
     // Add a log to indicate the shinySpider function has been hit, before entering the try-catch block.
     log(chalk.bold.cyan('Starting scrape, this process could take up to a half hour. Progress will be logged to the server console.'))
+
     // Add a for loop to loop over the tickerArray from /utils and scrape the data for each ticker as defined in the scrapeData(ticker) function also from /utils.
     for (const ticker of tickerArray) {
         try {
             if (spiderLogic.rateLimitCheck()) {
-                scrapeProgress.tick()
                 const scrape = await spiderLogic.scrapeData(ticker, page);
                 scrapeResults.push(scrape);
                 spiderLogic.lastScrape = Date.now();
                 log(chalk.bold.cyan(`Scrape finished for ${ticker} 🗃️`));
+                scrapeProgress.tick();
             } else {
                 // Return this log if the rate limit is hit. See docs for more information.
-                return chalk.bold.red(`🛑 Six hour rate limit hit. Please review the packages documentation regarding rate limiting and customization for help.`)
+                return chalk.bold.red('\n' + `🛑 Six hour rate limit hit. Please review the packages documentation regarding rate limiting and customization for help.`)
             }
         } catch (error) {
-            console.error(chalk.bold.red(`❕ Failed to run shinySpider function with error code: ${error}. ❕`))
+            console.error(chalk.bold.red('\n' + `❕ Failed to run shinySpider function with error code: ${error}. ❕`))
         }
     }
     // Close the browser instance and return the results
     await browser.close();
-    console.log(chalk.magenta.bold(JSON.stringify(util.inspect(scrapeResults, { maxArrayLength: null }))));
     return scrapeResults;
 };
-// Call shinySpider for the first time
-shinySpider().then(() => {
-    // Wait for a short delay, then call shinySpider again
-    setTimeout(() => {
-      shinySpider();
-    }, 5000); // Adjust this delay as needed, but it should be less than the rate limit
-  });
+
+(async () => {
+    console.log(await shinySpider());
+  })();
+
 module.exports = shinySpider
