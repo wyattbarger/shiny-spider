@@ -31,7 +31,7 @@
   - I seek a near plug and play package to help introduce myself to the npm platform as a self taught programmer, or programmer beginning their formal education.
 
 ### DESCRIPTION
-*Add with MVP*
+`shiny-spider` is a user-friendly npm package designed for beginner developers seeking a hassle-free solution to scrape real-time prices of S&P 500 index-listed stocks using puppeteer, directly from the NYSE's quotes. This package prioritizes simplicity, requiring minimal configuration while offering clear instructions for customization. This is [my](https://github.com/wyattbarger) first npm package release, please see the [contact ↓](#contact) section if you would like to discuss any matters regarding this release with me.
 
 ### INSTALLATION
 
