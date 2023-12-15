@@ -1,20 +1,21 @@
 # 🕷️🕸️ shiny-spider 💵🪙
 
-![License:GNUv3.0](https://img.shields.io/badge/License-GNUv3.0-green.svg)
+![License:GPLv3.0](https://img.shields.io/badge/License-GPLv3.0-green.svg)
 
 
 
 ### TABLE OF CONTENTS
-- [User Story](#user-story)
-- [Description](#description)
-- [Installation](#installation)
-- [Usage](#usage)
-- [License](#license)
-- [Contributing](#contributing)
-- [Tests](#tests)
-- [Contact](#contact-the-developer)
+- [🧑‍💻 User Story](#user-story)
+- [📄 Description](#description)
+- [📁 Installation](#installation)
+- [🏗️ Usage](#usage)
+- [🛠️ Configuration | Customization](#usage)
+- [📜 License](#license)
+- [🤝 Contributing](#contributing)
+- [📍 Tests](#tests)
+- [📲 Contact](#contact-the-developer)
 
-## USER STORY
+## 🧑‍💻 USER STORY
 
 - **As a beginner developer looking into using npm packages in my development to accomplish a variety of tasks:**
   
@@ -28,11 +29,11 @@
   
   - I seek a near plug and play package to help introduce myself to the npm platform as a self taught programmer, or programmer beginning their formal education.
 
-## DESCRIPTION
+## 📄 DESCRIPTION
 
 `shiny-spider` is a user-friendly npm package designed for beginner developers seeking a hassle-free solution to scrape real-time prices of S&P 500 index-listed stocks using puppeteer, directly from the NYSE's quotes. This package prioritizes simplicity, requiring minimal configuration while offering clear instructions for customization. This is [my](https://github.com/wyattbarger) first npm package release, please see the [contact ↓](#contact) section if you would like to discuss any matters regarding this release with me.
 
-## INSTALLATION
+## 📁 INSTALLATION
 
 `npm install shiny-spider`
 
@@ -44,27 +45,53 @@ Navigate to the root directory of your project, then run the above line of code 
 
 <small>`npm init -y`</small>
 
-## USAGE
+## 🏗️ USAGE
 
 
-This project was designed to be used by beginners who are starting to expirement with writing their own projects taking advantages of npm packages to aid in their development. This was a way for me to learn more about how one can publish packages for others to use, as I recently graduated my coding Bootcamp and had assignments requiring me to find and use npm packages in my projects. I thought writing a scraper that I could distribute as an npm package would be a fun way to learn more about the technology, and hopefully maybe help another student find an interesting technology to use in their assignments or projects.
+After following the instructions above in "Installation" import the shiny-spider module by pasting the following code at the top of you server.js or index.js file (may vary depending on your naming preferences):
 
-## LICENSE
+`const shinySpider = require('shiny-spider');`
+
+Using the scraper is as simple as assigning `shinySpider()` to a variable for you to use in your node.js application, as seen bellow:
+
+`const runShinySpider = shinySpider();`
+
+The variable name that you decide to assign shinySpider to can be changed according to your preferences or project needs. Once assigned, shinySpider can be used as a route end point, as a function to seed specific data related to the scrape, and anything else you as the user can apply it to. shinySpider() returns its data in a array of JavaScript objects in the key-value pair format of:
+
+    {
+        ticker: '',
+
+        stockName: 'data-from-scrape',
+
+        price 'data-from-scrape',
+    }
+
+By default this array will contain the five hundred stocks included in the Standard and Poor's 500 Index, with the data being scraped from quotes via the [NYSE 🏦](https://www.nyse.com/quotes).
+
+## 🛠️ CONFIGURATION
+
+## 📜 LICENSE
 
 
-GNUv3.0
-
-## CONTRIBUTING
+This project is licensed under the **GNU General Public License v3.0** - see the [LICENSE](LICENSE) file for details.
 
 
-This project is currently not open to pull requests to the shiny-spider respository, but you are welcome to take the source code and use it responsibly as you wish.
 
-## TESTS
+## 🤝 CONTRIBUTING
 
 
-*Consider adding Jest testing before publishing for things like the rate limiting, data caching, and specific results as well. This should have a Jest testing badge added to the README reporting coverage before the push and publishing as well.
 
-## CONTACT THE DEVELOPER
+
+## 📍 TESTS
+
+
+`(async () => {
+    console.log(await shinySpider());
+  })();`
+
+  
+
+## 📲 CONTACT THE DEVELOPER
 
 Developers GitHub profile:
 [wyattbarger](https://github.com/wyattbarger)
@@ -72,7 +99,5 @@ Developers GitHub profile:
 Reach the developer on LinkedIn: [wyatt-barger](https://www.linkedin.com/in/wyatt-barger/)
 
 Create a GitHub issue related to this project: [Issues](https://github.com/wyattbarger/shiny-spider/issues)
-
-
 
 ----------------------------
