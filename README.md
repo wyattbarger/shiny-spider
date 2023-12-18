@@ -28,11 +28,11 @@
 
   - I aim for a package that allows for easy customization and refactoring for my specific project needs, spelled out in the documentation and installed modules file comments.
 
-  - I seek a near plug and play package to help introduce myself to the npm platform as a self taught programmer, or programmer beginning their formal education.
+  - I'm looking for a nearly plug-and-play package to ease my introduction to the npm platform, whether as a self-taught programmer or someone starting formal education.
 
 ## DESCRIPTION
 
-`shiny-spider` is a user-friendly npm package designed for beginner developers seeking a hassle-free solution to scrape real-time prices of S&P 500 index-listed stocks using puppeteer, directly from the NYSE's quotes. This package prioritizes simplicity, requiring minimal configuration while offering clear instructions for customization. The results of the scrape ran by the main function installing users will utilize (outlined in [🏗️ Usage](#usage)) are returned as an array of Javascript objects. This is [my](https://github.com/wyattbarger) first npm package release, please see the [contact ↓](#contact) section if you would like to discuss any matters regarding this release with me.
+`shiny-spider` is a user-friendly npm package designed for beginner developers seeking a hassle-free solution to scrape real-time prices of S&P 500 index-listed stocks using puppeteer, directly from the NYSE's quotes. Prioritizing simplicity, this package requires minimal configuration while providing clear instructions for customization. The results of the scrape ran by the main function installing users will utilize (outlined in [🏗️ Usage](#usage)) are returned as an array of Javascript objects. This is [my](https://github.com/wyattbarger) first npm package release, please see the [contact ↓](#contact) section if you would like to discuss any matters regarding this release with me.
 
 ## INSTALLATION
 
@@ -42,7 +42,7 @@ Navigate to the root directory of your project, then run the above line of code 
 
 <hr style="border:0; border-top:1px dotted #dfe2e5">
 
-<small>_Note: [📄🔗 You will need to run npm init within your project's driectory before installing this package](https://docs.npmjs.com/cli/v6/commands/npm-init?v=true), so that there is a package.json to install shiny-spider to as a dependency. The line of code below can be used if you have not yet done this._</small>
+<small>_Note: [📄🔗 Before installing this package, you need to run npm init within your project's directory](https://docs.npmjs.com/cli/v6/commands/npm-init?v=true), so that there is a package.json to install shiny-spider to as a dependency. The line of code below can be used if you have not yet done this._</small>
 
 <small>`npm init -y`</small>
 
@@ -99,7 +99,7 @@ All potential pull requests are welcome, simply follow the contributing guide pr
 
 If you would like to use any of the code for your own project, simply refer to the above license section and follow the outlined procedures, as this code is open source.
 
-I apologize if my contribution guidelines are not the clearest, as this is the first project I have released in this manner. Please 
+I apologize if my contribution guidelines are not entirely clear; this is the first project I've released in this manner. Please feel free to reach out directly to me with questions via the [contact](#contact) section at the bottom of the README file.
 
 ## TESTS
 The below immediately invoked function was used during the development process to run shinySpider in a console log using await for testing purposes.
