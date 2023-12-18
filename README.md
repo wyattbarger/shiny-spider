@@ -50,11 +50,13 @@ Navigate to the root directory of your project, then run the above line of code 
 
 After following the instructions above in "Installation" import the shiny-spider module by pasting the following code at the top of you server.js or index.js file (may vary depending on your naming preferences):
 
-`const shinySpider = require('shiny-spider');`
+    const shinySpider = require('shiny-spider');
 
 Using the scraper is as simple as assigning `shinySpider()` to a variable for you to use in your node.js application, as seen bellow:
 
-`const runShinySpider = shinySpider();`
+    const runShinySpider = shinySpider();
+
+<small>Note: Puppeteer, the underlying technology, operates in a backend environment due to restrictions imposed by the Same-Origin Policy for browser requests. Ensure that you set up and run shiny-spider on the backend of your project to comply with these security considerations.</small>
 
 The variable name that you decide to assign shinySpider to can be changed according to your preferences or project needs. Once assigned, shinySpider can be used as a route end point, as a function to seed specific data related to the scrape, and anything else you as the user can apply it to. shinySpider() returns its data in a array of JavaScript objects in the key-value pair format of:
 

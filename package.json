@@ -30,7 +30,6 @@
   "homepage": "https://github.com/wyattbarger/shiny-spider#readme",
   "dependencies": {
     "chalk": "^4.1.2",
-    "cli-spinners": "^2.9.2",
     "progress": "^2.0.3",
     "puppeteer": "^21.6.0"
   }

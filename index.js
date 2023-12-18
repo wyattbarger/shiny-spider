@@ -50,8 +50,4 @@ async function shinySpider() {
     return scrapeResults;
 };
 
-(async () => {
-    console.log(await shinySpider());
-  })();
-
 module.exports = shinySpider
