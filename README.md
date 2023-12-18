@@ -2,7 +2,7 @@
 
 ![License:GNUv3.0](https://img.shields.io/badge/License-GNUv3.0-green.svg)
 
-![scrape-thumbnail-image]()
+![scrape-thumbnail-image](./md-assets/readme-thumbnail-image.png)
 
 ### TABLE OF CONTENTS
 
@@ -18,7 +18,7 @@
 
 ## USER STORY
 
-- **As a beginner developer looking into using npm packages in my development to accomplish a variety of tasks:**
+- **As a beginner developer looking into using npm packages in my development process to accomplish a variety of tasks:**
 
   - I want a user-friendly package that scrapes the prices of S&P 500 index listed stocks using puppeteer.
 
@@ -77,7 +77,7 @@ The files within the util folder of the shiny-spider module are commented out in
 * If you would like to customize the tickers that are scraped by `shinySpider()` you can simply add or remove tickers in the format: `"EXMPL",` to the array named tickerArray in the tickerArray.js file in the utils directory of the module.
     * To test any potential tickers you would like to add, plug it into the following url `https://www.nyse.com/quote/'test-ticker-here'`, and so long as a page resembling below loads upon entering the url, shinySpider() should work out of the box for scraping the data (more changes may need to be made if you are also changing the data you want returned from the shinySpider() function). 
 
-    ![test-url-example]()
+    ![test-url-example](./md-assets/example-page-url.png)
 
 * If you would like to change the rate that the scrape is able to be ran without your node server being restarted, you can edit the `rateLimit` variable found in spiderLogic.js file in the utils directory of the module.
     * If you customize this variable, please be ethical regarding your server requests, and be mindful of the volume and rate of requests you are sending to the server.
@@ -100,10 +100,19 @@ If you would like to use any of the code for your own project, simply refer to t
 I apologize if my contribution guidelines are not the clearest, as this is the first project I have released in this manner. Please 
 
 ## TESTS
+The below immediately invoked function was used during the development process to run shinySpider in a console log using await for testing purposes.
 
-`(async () => {
+    (async () => {
     console.log(await shinySpider());
-  })();`
+    })();
+
+You may notice when using the shiny-spider package that occasionally there will be certain stocks that fail to scrape, often at notable point in the trading day or extended market hours (this could be more likely to occur in companies with higher market caps, as more users may be looking for quotes on those tickers).
+
+![scrape-error-image](./md-assets/scrape-fail-example.png)
+
+* In the above screen shot you will see an example of a failed scrape for the ticker BRKB, this      
+
+
 
 ## CONTACT
 
