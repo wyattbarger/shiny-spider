@@ -18,7 +18,7 @@
 
 ## USER STORY
 
-- **As a beginner developer looking into using npm packages in my development process to accomplish a variety of tasks:**
+ **As a beginner developer looking into using npm packages in my development process to accomplish a variety of tasks:**
 
   - I want a user-friendly package that scrapes the prices of S&P 500 index listed stocks using puppeteer.
 
@@ -32,7 +32,7 @@
 
 ## DESCRIPTION
 
-`shiny-spider` is a user-friendly npm package designed for beginner developers seeking a hassle-free solution to scrape real-time prices of S&P 500 index-listed stocks using puppeteer, directly from the NYSE's quotes. This package prioritizes simplicity, requiring minimal configuration while offering clear instructions for customization. This is [my](https://github.com/wyattbarger) first npm package release, please see the [contact ↓](#contact) section if you would like to discuss any matters regarding this release with me.
+`shiny-spider` is a user-friendly npm package designed for beginner developers seeking a hassle-free solution to scrape real-time prices of S&P 500 index-listed stocks using puppeteer, directly from the NYSE's quotes. This package prioritizes simplicity, requiring minimal configuration while offering clear instructions for customization. The results of the scrape ran by the main function installing users will utilize (outlined in [🏗️ Usage](#usage)) are returned as an array of Javascript objects. This is [my](https://github.com/wyattbarger) first npm package release, please see the [contact ↓](#contact) section if you would like to discuss any matters regarding this release with me.
 
 ## INSTALLATION
 
@@ -42,7 +42,7 @@ Navigate to the root directory of your project, then run the above line of code 
 
 <hr style="border:0; border-top:1px dotted #dfe2e5">
 
-<small>_Note: You will need to run npm init within your project's driectory before installing this package, so that there is a package.json to install shiny-spider to as a dependency. The line of code below can be used if you have not yet done this._</small>
+<small>_Note: [📄🔗 You will need to run npm init within your project's driectory before installing this package](https://docs.npmjs.com/cli/v6/commands/npm-init?v=true), so that there is a package.json to install shiny-spider to as a dependency. The line of code below can be used if you have not yet done this._</small>
 
 <small>`npm init -y`</small>
 
@@ -65,6 +65,8 @@ The variable name that you decide to assign shinySpider to can be changed accord
 
         price 'data-from-scrape',
     }
+    
+![scrapeResults-example](./md-assets/scrapeResults-array-example.png)
 
 By default this array will contain the five hundred stocks included in the Standard and Poor's 500 Index, with the data being scraped from quotes via the [NYSE 🏦](https://www.nyse.com/quotes).
 
@@ -110,9 +112,18 @@ You may notice when using the shiny-spider package that occasionally there will 
 
 ![scrape-error-image](./md-assets/scrape-fail-example.png)
 
-* In the above screen shot you will see an example of a failed scrape for the ticker BRKB, this      
+* In the above screen shot you will see an example of a failed scrape for the ticker BRKB, representing the B class shares of Berkshire Hathaway. When a ticker is unable to have the data scraped for it within 30 seconds the scrape for all data with that ticker is abandoned and an error is returned. This scrape will appear as a null item in the object returned at the end of the `shinySpider()` function.
 
+If you have issues that happen constistently for one stock that does not seem to be related to a traffic or server related issue, then you should first try testing the ticker from the ticker array within the example url we scrape with, found in the[🛠️ Configuration | Customization](#configuration) section of the README.
 
+* This should not happen with the included tickerArray, but if you have customized the array it is more likely you may encounter this issue. For example BRKB needed to be added to the array as `"BRK.B"` upon testing the query with the url from the configuration section, which I was able to finally confirm when adding BRK.B to the url took me directly to the quote without presenting a search result screen.
+    
+    <font color="red">Example of a url search indicating the ticker is incorrect in `tickerArray.js`.</font>
+    ![BRKB-example](./md-assets/BRKB-example.png)
+    <font color="green">Example of a url search indicating `shinySpider()` will accept this ticker from tickerArray to run a scrape on.</font>
+    ![BRK.B-example](./md-assets/BRK.B-example.png)
+
+*Google Chrome was the default browser used during the testing and development of this package.*
 
 ## CONTACT
 

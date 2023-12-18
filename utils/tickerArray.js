@@ -67,7 +67,7 @@ const tickerArray = [
     'BAX',
     'BDX',
     'WRB',
-    'BRKB',
+    'BRK.B',
     'BBY',
     'BIO',
     'TECH',
